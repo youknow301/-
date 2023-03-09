@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        //문자열로 숫자를 받는다.
+        String number = sc.next();
+        //배열 생성
+        int[] numbers = new int[number.length()];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.parseInt(number.substring(i, i + 1));
+        }
+        //최대값 초기화
+
+        for (int j = 0; j < numbers.length; j++) {
+            int max = j;
+            for (int k = j + 1; k < numbers.length; k++) {
+                if (numbers[k] > numbers[max]) {
+                    max = k;
+                }
+
+            }
+            if (numbers[max] > numbers[j]) {
+                int temp = numbers[max];
+                numbers[max] = numbers[j];
+                numbers[j] = temp;
+
+            }
+
+        }
+        for(int i=0; i <numbers.length;i++){
+
+            System.out.print(numbers[i]);
+        }
+    }
+}
