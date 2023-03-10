@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class baekjoon1026 {
+    public static void main(String[] args) throws IOException {
+        // A의 오름차순과 B의 내림차순배열을 곱하는것이 목적
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[] A = new int[N]; //A배열 생성
+        int[] B = new int[N]; //B배열 생성
+        StringTokenizer token1 = new StringTokenizer(br.readLine());
+        for(int i=0; i <N;i++){
+            A[i] = Integer.parseInt(token1.nextToken());
+        }
+        Arrays.sort(A);
+        StringTokenizer token2 = new StringTokenizer(br.readLine());
+        for(int i=0; i <N;i++){
+            B[i] = Integer.parseInt(token2.nextToken());
+        }
+
+        for (int k = 0; k < N; k++) {
+            for (int m = k + 1; m < N; m++) {
+                if (B[k] < B[m]) {
+                    int temp = B[k];
+                    B[k] = B[m];
+                    B[m] = temp;
+                }
+            }
+        }
+        //A와 B배열 곱하기
+        int sum = 0; //합을 구하는 것이므로
+        for (int start = 0; start < N; start++) {
+            sum += A[start] * B[start];
+        }
+        System.out.println(sum);
+
+    }
+}
