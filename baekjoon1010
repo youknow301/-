@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+//조합 a[i][j] = a[i-1][j-1] + a[i-1][j]
+public class baekjoon1010 {
+    static int[][] leg = new int[31][31];
+
+    static int combi(int x, int y) {
+        if (leg[x][y] > 0) {
+            return leg[x][y];
+        }
+        if (x == y || y == 0) {
+            return 1;
+        }
+        leg[x][y] = combi(x - 1, y - 1) + combi(x - 1, y);
+        return leg[x][y];
+
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            System.out.println(combi(b, a));
+        }
+
+    }
+}
